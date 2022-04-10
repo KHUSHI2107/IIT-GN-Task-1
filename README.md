@@ -132,7 +132,29 @@ where mn is called '**mean**' and o is called '**variance**'.
 
 The multivariate Gaussian distribution of an n-dimensional vector x=(x1,x2,⋯,xn) may be written
 
-p(x;μ,Σ)=1(2π)n|Σ|−−−−−−−√exp(−12(x−μ)TΣ−1(x−μ)),
+p(x;μ,Σ)= 1(2π)n|Σ|−−−−−−−√exp(−12(x−μ)TΣ−1(x−μ)),
+
+![c66e6f6abd66698181e114a4b00da97446efd3c4](https://user-images.githubusercontent.com/65617775/162612063-3b2317e9-043b-4f03-97b7-8ad2621eb4b9.svg)
+
+
 where μ is the n-dimensional mean vector and Σ is the n×n covariance matrix.
 
 To visualize the magnitude of p(x;μ,Σ) as a function of all the n dimensions requires a plot in n+1 dimensions, so visualizing this distribution for n>2 is tricky. The code below calculates and visualizes the case of n=2, the bivariate Gaussian distribution.
+
+![bivariate_gaussian](https://user-images.githubusercontent.com/65617775/162611846-62efd2ba-efd1-4659-8c3a-bce6a8acdf56.png)
+
+
+
+**REFERENCES-**
+* [JAX](https://github.com/google/jax)
+* [What is the JAX Deep Learning Framework?](https://blog.roboflow.com/jax-framework/)
+* [Multivariate normal distribution Wikipedia ](https://en.wikipedia.org/wiki/Multivariate_normal_distribution#:~:text=In%20probability%20theory%20and%20statistics,normal%20distribution%20to%20higher%20dimensions.)
+* [get-started-with-JAX](https://github.com/gordicaleksa/get-started-with-JAX)
+* [Visualizing the bivariate Gaussian distribution using Numpy](https://scipython.com/blog/visualizing-the-bivariate-gaussian-distribution/)
+* [interactive plot with widgets](https://stackoverflow.com/questions/44329068/jupyter-notebook-interactive-plot-with-widgets)
+* [Multivariate Normal Distribution](https://towardsdatascience.com/multivariate-normal-distribution-562b28ec0fe0)
+* [Animating Normal Distributions with Python](https://www.t-ott.dev/2021/11/24/animating-normal-distributions)
+
+
+**Connect With Me-**
+* Follow me on [LinkedIn](https://www.linkedin.com/in/khushi-gupta-2107) 
