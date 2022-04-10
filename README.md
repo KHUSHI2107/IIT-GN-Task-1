@@ -18,13 +18,60 @@ JAX ecosystem is becoming an increasingly popular alternative to PyTorch and Ten
 Boiled down, JAX is python's numpy with automatic differentiation and optimized to run on GPU. The seamless translation between writing numpy and writing in JAX has made JAX popular with machine learning practitioners.
 JAX offers four main function transformations that make it efficient to use when executing deep learning workloads. At its core, JAX is an extensible system for transforming numerical functions. Here are four transformations of primary interest: grad, jit, vmap, and pmap.
 
-* grad - automatically differentiates a function for backpropagation. You can take grad to any derivative order.
+* **grad** - automatically differentiates a function for backpropagation. You can take grad to any derivative order.
 
-* jit - auto-optimizes your functions to run their operations efficiently. Can also be used as a function decorator. You can use XLA to compile your functions end-to-end with jit, used either as an @jit decorator or as a higher-order function.
+~~~
+from jax import grad
+import jax.numpy as jnp
 
-* vmap - maps a function across dimensions. Means that you don't have to keep track of dimensions as carefully when passing a batch through, for example. vmap is the vectorizing map. It has the familiar semantics of mapping a function along array axes, but instead of keeping the loop on the outside, it pushes the loop down into a function’s primitive operations for better performance.
+def tanh(x):  # Define a function
+  y = jnp.exp(-2.0 * x)
+  return (1.0 - y) / (1.0 + y)
 
-* pmap - maps processes across multiple processors, like multi-GPU. For parallel programming of multiple accelerators, like multiple GPUs, use pmap. With pmap you write single-program multiple-data (SPMD) programs, including fast parallel collective communication operations. Applying pmap will mean that the function you write is compiled by XLA (similarly to jit), then replicated and executed in parallel across devices.
+grad_tanh = grad(tanh)  # Obtain its gradient function
+print(grad_tanh(1.0))   # Evaluate it at x = 1.0
+# prints 0.4199743
+~~~
+
+* **jit** - auto-optimizes your functions to run their operations efficiently. Can also be used as a function decorator. You can use XLA to compile your functions end-to-end with jit, used either as an @jit decorator or as a higher-order function.
+
+~~~
+import jax.numpy as jnp
+from jax import jit
+
+def slow_f(x):
+  # Element-wise ops see a large benefit from fusion
+  return x * x + x * 2.0
+
+x = jnp.ones((5000, 5000))
+fast_f = jit(slow_f)
+%timeit -n10 -r3 fast_f(x)  # ~ 4.5 ms / loop on Titan X
+%timeit -n10 -r3 slow_f(x)  # ~ 14.5 ms / loop (also on GPU via JAX)
+~~~
+
+* **vmap** - maps a function across dimensions. Means that you don't have to keep track of dimensions as carefully when passing a batch through, for example. vmap is the vectorizing map. It has the familiar semantics of mapping a function along array axes, but instead of keeping the loop on the outside, it pushes the loop down into a function’s primitive operations for better performance.
+
+~~~
+predictions = vmap(predict, in_axes=(None, 0))(params, input_batch)
+~~~
+
+* **pmap** - maps processes across multiple processors, like multi-GPU. For parallel programming of multiple accelerators, like multiple GPUs, use pmap. With pmap you write single-program multiple-data (SPMD) programs, including fast parallel collective communication operations. Applying pmap will mean that the function you write is compiled by XLA (similarly to jit), then replicated and executed in parallel across devices.
+
+~~~
+from jax import random, pmap
+import jax.numpy as jnp
+
+# Create 8 random 5000 x 6000 matrices, one per GPU
+keys = random.split(random.PRNGKey(0), 8)
+mats = pmap(lambda key: random.normal(key, (5000, 6000)))(keys)
+
+# Run a local matmul on each device in parallel (no data transfer)
+result = pmap(lambda x: jnp.dot(x, x.T))(mats)  # result.shape is (8, 5000, 5000)
+
+# Compute the mean on each device in parallel and print the result
+print(pmap(jnp.mean)(result))
+# prints [1.1566595 1.1805978 ... 1.2321935 1.2015157]
+~~~
 
 **Installation-**
 
