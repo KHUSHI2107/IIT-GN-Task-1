@@ -181,6 +181,8 @@ The multivariate Gaussian distribution of an n-dimensional vector x=(x1,x2,⋯,x
 
 p(x;μ,Σ)= 1(2π)n|Σ|−−−−−−−√exp(−12(x−μ)TΣ−1(x−μ)),
 
+p(x; μ, Σ) = 1/(sqrt((2π) ^ n|Σ|)) * exp(- 1/2 * (x - μ) ^ T * Σ ^ - 1 * (x - μ))
+
 ![c66e6f6abd66698181e114a4b00da97446efd3c4](https://user-images.githubusercontent.com/65617775/162612063-3b2317e9-043b-4f03-97b7-8ad2621eb4b9.svg)
 
 
