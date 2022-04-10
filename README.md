@@ -188,10 +188,12 @@ where μ is the n-dimensional mean vector and Σ is the n×n covariance matrix.
 
 To visualize the magnitude of p(x;μ,Σ) as a function of all the n dimensions requires a plot in n+1 dimensions, so visualizing this distribution for n>2 is tricky. The code below calculates and visualizes the case of n=2, the bivariate Gaussian distribution.
 
+[**Code for Animating bivariate normal distribution**](https://github.com/KHUSHI2107/IIT-GN-Task-1/blob/main/IIT_GN_TASK1.ipynb)
+
 ![bivariate_gaussian](https://user-images.githubusercontent.com/65617775/162611846-62efd2ba-efd1-4659-8c3a-bce6a8acdf56.png)
 
 
-[**Animate bivariate normal distribution**](https://github.com/KHUSHI2107/IIT-GN-Task-1/blob/main/IIT_GN_TASK1.ipynb)
+
 
 
 **REFERENCES-**
