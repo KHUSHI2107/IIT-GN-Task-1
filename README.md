@@ -26,6 +26,20 @@ JAX offers four main function transformations that make it efficient to use when
 
 * pmap - maps processes across multiple processors, like multi-GPU. For parallel programming of multiple accelerators, like multiple GPUs, use pmap. With pmap you write single-program multiple-data (SPMD) programs, including fast parallel collective communication operations. Applying pmap will mean that the function you write is compiled by XLA (similarly to jit), then replicated and executed in parallel across devices.
 
+**Installation-**
+
+JAX is written in pure Python, but it depends on XLA, which needs to be installed as the jaxlib package. Use the following instructions to install a binary package with pip, or to build JAX from source.
+
+We support installing or building jaxlib on Linux (Ubuntu 16.04 or later) and macOS (10.12 or later) platforms.
+Windows users can use JAX on CPU and GPU via the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/about). There is some initial native Windows support, but since it is still somewhat immature, there are no binary releases and it must be [built from source](https://jax.readthedocs.io/en/latest/developer.html#additional-notes-for-building-jaxlib-from-source-on-windows).
+
+**pip installation: CPU**
+
+To install a CPU-only version of JAX, which might be useful for doing local development on a laptop, you can run
+
+~~~pip install --upgrade pip
+pip install --upgrade "jax[cpu]"~~~
+
 
 **NORMAL DISTRIBUTION**-
 
