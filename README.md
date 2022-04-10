@@ -1,6 +1,7 @@
 # IIT-GN-Task-1
 Task-1 for summer research internship 2022 at IIT Gandhinagar under the supervision of **Prof. Nipun Batra sir**. 
 **Animate bivariate normal distribution-**
+
 ![unnamed](https://user-images.githubusercontent.com/65617775/162606334-7f3496e5-a1a3-4619-be81-861680c96188.png)
 
 * Reproduce the above figure showing samples from bivariate normal with marginal PDFs from scratch using JAX and matplotlib.
