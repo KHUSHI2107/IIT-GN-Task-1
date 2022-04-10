@@ -38,8 +38,70 @@ Windows users can use JAX on CPU and GPU via the [Windows Subsystem for Linux](h
 To install a CPU-only version of JAX, which might be useful for doing local development on a laptop, you can run
 
 ~~~pip install --upgrade pip
+
 pip install --upgrade "jax[cpu]" 
 ~~~
+
+On Linux, it is often necessary to first update pip to a version that supports manylinux2010 wheels.
+
+**pip installation: GPU (CUDA)**
+
+If you want to install JAX with both CPU and NVidia GPU support, you must first install [CUDA](https://developer.nvidia.com/cuda-downloads) and [CuDNN](https://developer.nvidia.com/CUDNN), if they have not already been installed. Unlike some other popular deep learning systems, JAX does not bundle CUDA or CuDNN as part of the pip package.
+
+JAX provides pre-built CUDA-compatible wheels for Linux only, with CUDA 11.1 or newer, and CuDNN 8.0.5 or newer. Other combinations of operating system, CUDA, and CuDNN are possible, but require building from source.
+
+* CUDA 11.1 or newer is required.
+You may be able to use older CUDA versions if you build from source, but there are known bugs in CUDA in all CUDA versions older than 11.1, so we do not ship prebuilt binaries for older CUDA versions.
+* The supported cuDNN versions for the prebuilt wheels are:
+cuDNN 8.2 or newer. We recommend using the cuDNN 8.2 wheel if your cuDNN installation is new enough, since it supports additional functionality.
+cuDNN 8.0.5 or newer.
+* You must use an NVidia driver version that is at least as new as your [CUDA toolkit's corresponding driver version](https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html#cuda-major-component-versions__table-cuda-toolkit-driver-versions). For example, if you have CUDA 11.4 update 4 installed, you must use NVidia driver 470.82.01 or newer if on Linux. This is a strict requirement that exists because JAX relies on JIT-compiling code; older drivers may lead to failures.
+If you need to use an newer CUDA toolkit with an older driver, for example on a cluster where you cannot update the NVidia driver easily, you may be able to use the [CUDA forward compatibility packages](https://docs.nvidia.com/deploy/cuda-compatibility/) that NVidia provides for this purpose.
+
+Next, run
+
+~~~pip install --upgrade pip
+# Installs the wheel compatible with CUDA 11 and cuDNN 8.2 or newer.
+pip install --upgrade "jax[cuda]" -f https://storage.googleapis.com/jax-releases/jax_releases.html  # Note: wheels only available on linux.
+~~~
+
+The jaxlib version must correspond to the version of the existing CUDA installation you want to use. You can specify a particular CUDA and CuDNN version for jaxlib explicitly:
+
+~~~pip install --upgrade pip
+
+# Installs the wheel compatible with Cuda >= 11.4 and cudnn >= 8.2
+pip install jax[cuda11_cudnn82] -f https://storage.googleapis.com/jax-releases/jax_releases.html
+
+# Installs the wheel compatible with Cuda >= 11.1 and cudnn >= 8.0.5
+pip install jax[cuda11_cudnn805] -f https://storage.googleapis.com/jax-releases/jax_releases.html
+~~~
+
+You can find your CUDA version with the command:
+
+~~~nvcc --version
+~~~
+
+Some GPU functionality expects the CUDA installation to be at /usr/local/cuda-X.X, where X.X should be replaced with the CUDA version number (e.g. cuda-11.1). If CUDA is installed elsewhere on your system, you can either create a symlink:
+
+~~~sudo ln -s /path/to/cuda /usr/local/cuda-X.X
+~~~
+**pip installation: Google Cloud TPU-**
+
+JAX also provides pre-built wheels for [Google Cloud TPU](https://cloud.google.com/tpu/docs/users-guide-tpu-vm). To install JAX along with appropriate versions of jaxlib and libtpu, you can run the following in your cloud TPU VM:
+
+~~~pip install --upgrade pip
+pip install "jax[tpu]>=0.2.16" -f https://storage.googleapis.com/jax-releases/libtpu_releases.html
+~~~
+
+**pip installation: Colab TPU**
+
+Colab TPU runtimes come with JAX pre-installed, but before importing JAX you must run the following code to initialize the TPU:
+
+~~~import jax.tools.colab_tpu
+jax.tools.colab_tpu.setup_tpu()
+~~~
+
+Colab TPU runtimes use an older TPU architecture than Cloud TPU VMs, so installing jax[tpu] should be avoided on Colab. If for any reason you would like to update the jax & jaxlib libraries on a Colab TPU runtime, follow the CPU instructions above (i.e. install jax[cpu]).
 
 
 **NORMAL DISTRIBUTION**-
