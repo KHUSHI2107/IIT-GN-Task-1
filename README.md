@@ -191,6 +191,8 @@ To visualize the magnitude of p(x;μ,Σ) as a function of all the n dimensions r
 ![bivariate_gaussian](https://user-images.githubusercontent.com/65617775/162611846-62efd2ba-efd1-4659-8c3a-bce6a8acdf56.png)
 
 
+[**Animate bivariate normal distribution**](https://github.com/KHUSHI2107/IIT-GN-Task-1/blob/main/IIT_GN_TASK1.ipynb)
+
 
 **REFERENCES-**
 * [JAX](https://github.com/google/jax)
