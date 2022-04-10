@@ -27,7 +27,21 @@ JAX offers four main function transformations that make it efficient to use when
 * pmap - maps processes across multiple processors, like multi-GPU. For parallel programming of multiple accelerators, like multiple GPUs, use pmap. With pmap you write single-program multiple-data (SPMD) programs, including fast parallel collective communication operations. Applying pmap will mean that the function you write is compiled by XLA (similarly to jit), then replicated and executed in parallel across devices.
 
 
+**NORMAL DISTRIBUTION
+**-
+
+The normal distribution was first discovered by De-Moivre (an English mathematician) in 1733. De-Moivre obtained this continuous distribution as a limiting case of the binomial distribution and applied it to the problems of game of chance. It waw credited to Gauss (1809) who used the normal curve to describe the theory of accidental errors of measurements involved in the calculation of orbits of heavenly bodies.
+Throughout two continuous centuries (18th and 19th) many efforts were made to develop a normal model as the underlying law which may govern all continuous random variables. That is why the name 'normal.
+
+**Definition.** A random variable X is said to have a normal distribution with parameters m and o2 if its density function is given by the probability law :
 
 
+![normal_distribution](https://user-images.githubusercontent.com/65617775/162609850-20465b44-beda-4cd0-be42-3ca06d9e3164.svg)
 
+f(x)	=	probability density function
+\sigma	=	standard deviation
+\mu	=	mean
 
+- \infinity < x < \infinity , \sigma > 0 , - \infinity < m < \infinity
+
+where mn is called 'mean' and o is called 'variance'.
