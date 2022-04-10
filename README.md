@@ -38,7 +38,8 @@ Windows users can use JAX on CPU and GPU via the [Windows Subsystem for Linux](h
 To install a CPU-only version of JAX, which might be useful for doing local development on a laptop, you can run
 
 ~~~pip install --upgrade pip
-pip install --upgrade "jax[cpu]" ~~~
+pip install --upgrade "jax[cpu]" 
+~~~
 
 
 **NORMAL DISTRIBUTION**-
