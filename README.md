@@ -9,7 +9,7 @@ Task-1 for summer research internship 2022 at IIT Gandhinagar under the supervis
 
 **GETTING HANDS-ON WITH JAX-**
 
-The aim is to introduce you with https://github.com/google/jax and complete the task. 
+The aim is to introduce you with [JAX](https://github.com/google/jax) and complete the task. 
 
 JAX ecosystem is becoming an increasingly popular alternative to PyTorch and TensorFlow
 
@@ -20,7 +20,9 @@ JAX offers four main function transformations that make it efficient to use when
 
 grad - automatically differentiates a function for backpropagation. You can take grad to any derivative order.
 
-from jax import grad
+[Link to Google](https://www.google.com)
+
+"""from jax import grad
 import jax.numpy as jnp
 
 def tanh(x):  # Define a function
@@ -29,6 +31,6 @@ def tanh(x):  # Define a function
 
 grad_tanh = grad(tanh)  # Obtain its gradient function
 print(grad_tanh(1.0))   # Evaluate it at x = 1.0
-# prints 0.4199743
+# prints 0.4199743"""
 
 
