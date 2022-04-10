@@ -37,10 +37,20 @@ Throughout two continuous centuries (18th and 19th) many efforts were made to de
 
 ![normal_distribution](https://user-images.githubusercontent.com/65617775/162609850-20465b44-beda-4cd0-be42-3ca06d9e3164.svg)
 
-**f(x)**	=	probability density function
-**σ** =	standard deviation
+**f(x)**	=	probability density function,  
+**σ** =	standard deviation,  
 **μ**	=	mean
 
 - ∞ < x < ∞ , σ > 0 , - ∞ < m < ∞
 
 where mn is called '**mean**' and o is called '**variance**'.
+
+
+**Bivariate Gaussian distribution**
+
+The multivariate Gaussian distribution of an n-dimensional vector x=(x1,x2,⋯,xn) may be written
+
+p(x;μ,Σ)=1(2π)n|Σ|−−−−−−−√exp(−12(x−μ)TΣ−1(x−μ)),
+where μ is the n-dimensional mean vector and Σ is the n×n covariance matrix.
+
+To visualize the magnitude of p(x;μ,Σ) as a function of all the n dimensions requires a plot in n+1 dimensions, so visualizing this distribution for n>2 is tricky. The code below calculates and visualizes the case of n=2, the bivariate Gaussian distribution.
